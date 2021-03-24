@@ -1,0 +1,10 @@
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (1, 2, 5, 6, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (2, 8, 9, 5, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (3, 2, 2, 4, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (4, 7, 2, 5, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (5, 4, 3, 2, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (6, 10, 2, 4, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (7, 4, 6, 7, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (8, 6, 2, 7, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (9, 1, 10, 3, '2021-02-21 20:00:24.351052');
+insert into Response (responseID, doubtID, tfID, instructorID, timestamp) values (10, 7, 8, 6, '2021-02-21 20:00:24.351052');

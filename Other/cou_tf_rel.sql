@@ -1,0 +1,10 @@
+insert into cou_tf_rel (courseID, tfID) values (1, 3);
+insert into cou_tf_rel (courseID, tfID) values (2, 1);
+insert into cou_tf_rel (courseID, tfID) values (3, 10);
+insert into cou_tf_rel (courseID, tfID) values (4, 8);
+insert into cou_tf_rel (courseID, tfID) values (5, 5);
+insert into cou_tf_rel (courseID, tfID) values (6, 7);
+insert into cou_tf_rel (courseID, tfID) values (7, 3);
+insert into cou_tf_rel (courseID, tfID) values (8, 9);
+insert into cou_tf_rel (courseID, tfID) values (9, 3);
+insert into cou_tf_rel (courseID, tfID) values (10, 10);

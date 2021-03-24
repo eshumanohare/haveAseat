@@ -1,0 +1,10 @@
+insert into ant_cou_rel (courseID, antiReqCourseID) values (1, 6);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (2, 8);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (3, 10);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (4, 10);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (5, 2);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (6, 7);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (7, 10);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (8, 3);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (9, 4);
+insert into ant_cou_rel (courseID, antiReqCourseID) values (10, 5);

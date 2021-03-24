@@ -1,0 +1,10 @@
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (1, 'nessery0', 'dshepeard0', 'ksalling0@goodreads.com', null, null);
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (2, 'jwhellams1', 'bjudge1', 'btertre1@yelp.com', 'http://dummyimage.com/120x247.jpg/cc0000/ffffff', 'cfosbraey1@huffingtonpost.com');
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (3, 'ktetla2', 'tdeyes2', 'druppel2@jigsy.com', 'http://dummyimage.com/120x245.png/cc0000/ffffff', 'afrost2@loc.gov');
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (4, 'jpetty3', 'apeers3', 'daylward3@miitbeian.gov.cn', 'http://dummyimage.com/196x124.bmp/5fa2dd/ffffff', 'jgavozzi3@va.gov');
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (5, 'qkaroly4', 'mventham4', 'oapril4@webnode.com', null, null);
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (6, 'ovisco5', 'dcorless5', 'rcavell5@ifeng.com', 'http://dummyimage.com/229x179.png/cc0000/ffffff', 'cklazenga5@earthlink.net');
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (7, 'jhallgate6', 'bsmithyman6', 'thickisson6@sciencedirect.com', null, null);
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (8, 'pempleton7', 'depilet7', 'adevons7@nationalgeographic.com', null, null);
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (9, 'mcrosio8', 'rommanney8', 'sgorst8@free.fr', 'http://dummyimage.com/200x125.jpg/5fa2dd/ffffff', 'mcavilla8@issuu.com');
+insert into TeachingFellow (tfID, username, name, email, profilePicture, workEmail) values (10, 'bhowis9', 'scollerd9', 'jrojas9@linkedin.com', 'http://dummyimage.com/199x106.jpg/5fa2dd/ffffff', 'adollimore9@businessweek.com');

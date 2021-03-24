@@ -1,0 +1,10 @@
+insert into ins_cou_rel (instructorID, courseID) values (1, 8);
+insert into ins_cou_rel (instructorID, courseID) values (2, 7);
+insert into ins_cou_rel (instructorID, courseID) values (3, 2);
+insert into ins_cou_rel (instructorID, courseID) values (4, 4);
+insert into ins_cou_rel (instructorID, courseID) values (5, 1);
+insert into ins_cou_rel (instructorID, courseID) values (6, 3);
+insert into ins_cou_rel (instructorID, courseID) values (7, 2);
+insert into ins_cou_rel (instructorID, courseID) values (8, 4);
+insert into ins_cou_rel (instructorID, courseID) values (9, 3);
+insert into ins_cou_rel (instructorID, courseID) values (10, 6);

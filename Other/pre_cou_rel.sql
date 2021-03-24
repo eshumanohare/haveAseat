@@ -1,0 +1,10 @@
+insert into pre_cou_rel (courseID, preReqCourseID) values (1, 2);
+insert into pre_cou_rel (courseID, preReqCourseID) values (2, 2);
+insert into pre_cou_rel (courseID, preReqCourseID) values (3, 1);
+insert into pre_cou_rel (courseID, preReqCourseID) values (4, 2);
+insert into pre_cou_rel (courseID, preReqCourseID) values (5, 7);
+insert into pre_cou_rel (courseID, preReqCourseID) values (6, 2);
+insert into pre_cou_rel (courseID, preReqCourseID) values (7, 9);
+insert into pre_cou_rel (courseID, preReqCourseID) values (8, 3);
+insert into pre_cou_rel (courseID, preReqCourseID) values (9, 1);
+insert into pre_cou_rel (courseID, preReqCourseID) values (10, 1);

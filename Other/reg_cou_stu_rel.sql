@@ -1,0 +1,10 @@
+insert into reg_cou_stu_rel (studentID, courseID, type) values (1, 6, 'Core');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (2, 9, 'Core');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (3, 8, 'Elective');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (4, 2, 'Elective');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (5, 8, 'Elective');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (6, 8, 'Core');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (7, 8, 'Elective');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (8, 6, 'Elective');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (9, 10, 'Elective');
+insert into reg_cou_stu_rel (studentID, courseID, type) values (10, 10, 'Core');

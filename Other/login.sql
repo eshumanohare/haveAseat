@@ -1,0 +1,10 @@
+insert into login (username, email, password, role) values ('Leland', 'lsjostrom0@wordpress.org', 'WeJG3MKgcY', 'Student');
+insert into login (username, email, password, role) values ('Preston', 'pmesias1@deliciousdays.com', '3RYB2I', 'TF');
+insert into login (username, email, password, role) values ('Danell', 'dfranzelini2@surveymonkey.com', 'ROCckFLN', 'TF');
+insert into login (username, email, password, role) values ('Arabela', 'abarfield3@skyrock.com', 'E4FqOTW', 'Instructor');
+insert into login (username, email, password, role) values ('Cornelia', 'cdellar4@constantcontact.com', 'GagB6Dub', 'Instructor');
+insert into login (username, email, password, role) values ('Korie', 'kpartener5@japanpost.jp', 'jP1245aF9', 'TF');
+insert into login (username, email, password, role) values ('Libbi', 'lcastiglioni6@wikia.com', 'NFxLAU', 'Student');
+insert into login (username, email, password, role) values ('Sherri', 'splaskett7@dropbox.com', '1fubGAd9du', 'TF');
+insert into login (username, email, password, role) values ('Sergeant', 'sstrickett8@pagesperso-orange.fr', '0EgTa6BqDXW', 'Instructor');
+insert into login (username, email, password, role) values ('Camey', 'cgiorgi9@goodreads.com', 'R3m5v4', 'TF');

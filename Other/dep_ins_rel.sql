@@ -1,0 +1,10 @@
+insert into dep_ins_rel (departmentID, instructorID) values (1, 3);
+insert into dep_ins_rel (departmentID, instructorID) values (2, 8);
+insert into dep_ins_rel (departmentID, instructorID) values (3, 6);
+insert into dep_ins_rel (departmentID, instructorID) values (4, 7);
+insert into dep_ins_rel (departmentID, instructorID) values (5, 3);
+insert into dep_ins_rel (departmentID, instructorID) values (6, 3);
+insert into dep_ins_rel (departmentID, instructorID) values (7, 9);
+insert into dep_ins_rel (departmentID, instructorID) values (8, 5);
+insert into dep_ins_rel (departmentID, instructorID) values (9, 5);
+insert into dep_ins_rel (departmentID, instructorID) values (10, 4);
