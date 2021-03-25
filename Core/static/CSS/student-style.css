@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&family=Roboto&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #F5F5F5;
+}
+
+body {
+    max-width: 1800px;
+    width: 100%;
+    margin: auto;
+}
+
+.Hide {
+    display: none;
+}
+
+.Container {
+    display: flex;
+    position: relative;
+    width: 100%;
+}
+
+.Left-Side-Panel {
+    background-color: #212529;
+    width: 300px;
+    padding: 0px 25px;
+    height: 100vh;
+    overflow-y: auto;
+}   
+
+.Main-Panel {
+    width: 100%;
+    padding: 25px;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.Section-Heading {
+    display: flex;
+    align-items: center;
+    font-family: "Bebas Neue";
+    font-size: 22px;
+    margin: 0px -25px;
+    background-color: #343A40;
+    padding: 5px 25px;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.Section-Heading:hover {
+    background-color: #495057;
+}
+
+.Sub-Section {
+    display: flex;
+    flex-direction: column;
+    background-color: #495057;
+    color: #FFFFFF;
+    padding: 5px 25px;
+    margin: 0px -25px;
+    margin-top: 15px;
+    font-family: "Poppins";
+}
+
+.Sub-Section-Label {
+    font-family: "Poppins";
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.Input-Label {
+    font-size: 13px;
+}
+
+.Input-Group {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.Input-Group p {
+    margin: 0px 10px;
+    font-size: 13px;
+}
+
+.Input-Field-Select {
+    padding: 3px 10px;
+}
+
+.Enroll-Button {
+    float: right;
+    width: 20%;
+    margin: 15px 0px;
+    padding: 5px 10px;
+    font-family: "Poppins";
+    font-size: 14px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    background-color: #2ECC71;
+    cursor: pointer;
+}
+
+.Enroll-Button:hover {
+    background-color: #28B463;
+}
+
+.Panel-Results {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Panel-Table-Heading {
+    font-family: "Poppins";
+    background-color: #FFFFFF;
+    padding: 5px 10px;
+    border: 1px solid #B0B0B0;
+}
+
+.Panel-Table-Row {
+    text-align: center;
+}
+
+.Panel-Row-Button {
+    width: 100%;
+    padding: 5px 10px;
+    font-family: "Poppins";
+    font-size: 14px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.Red {
+    background-color: #E74C3C;
+}
+
+.Red:hover {
+    background-color: #CB4335;
+}
+
+.Blue {
+    background-color: #3498DB;
+}
+
+.Blue:hover {
+    background-color: #2E86C1 ;
+}
+
+.Violet {
+    background-color: #8E44AD;
+}
+
+.Violet:hover {
+    background-color: #7D3C98;
+}
