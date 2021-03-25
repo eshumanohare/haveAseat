@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/admin-style.css' %}">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div class="Container">
+        <div class="Left-Side-Panel">
+            <form action="#" method="POST">
+                <!-- Courses -->
+                <div class="Section-Heading">
+                    <p>Courses</p>
+                </div>
+                <div class="Section">
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Semester</label>
+                        <div class="Input">
+                            <input type="checkbox" name="Monsoon" class="Input-Field">
+                            <label for="" class="Input-Label">Monsoon</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="Summer" class="Input-Field">
+                            <label for="" class="Input-Label">Summer</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="Winter" class="Input-Field">
+                            <label for="" class="Input-Label">Winter</label>
+                        </div>
+                    </div>
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Program</label>
+                        <div class="Input">
+                            <input type="checkbox" name="B-Tech" class="Input-Field">
+                            <label for="" class="Input-Label">B. Tech</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="M-Tech" class="Input-Field">
+                            <label for="" class="Input-Label">M. Tech</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="PhD" class="Input-Field">                    
+                            <label for="" class="Input-Label">PhD</label>
+                        </div>
+                    </div>
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Department</label>
+                        <div class="Input">
+                            <input type="checkbox" name="CSE" class="Input-Field">
+                            <label for="" class="Input-Label">CSE</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="ECE" class="Input-Field">
+                            <label for="" class="Input-Label">ECE</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="MTH" class="Input-Field">
+                            <label for="" class="Input-Label">MTH</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="BIO" class="Input-Field">
+                            <label for="" class="Input-Label">BIO</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="DES" class="Input-Field">
+                            <label for="" class="Input-Label">DES</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="SSH" class="Input-Field">
+                            <label for="" class="Input-Label">SSH</label>                    
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="OTHERS" class="Input-Field">
+                            <label for="" class="Input-Label">OTHERS</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Students -->
+                <div class="Section-Heading">
+                    <p>Students</p>
+                </div>
+                <div class="Section">
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Branches</label>
+                        <div class="Input">
+                            <input type="checkbox" name="CSE" class="Input-Field">
+                            <label for="" class="Input-Label">CSE</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="ECE" class="Input-Field">
+                            <label for="" class="Input-Label">ECE</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="CSAM" class="Input-Field">
+                            <label for="" class="Input-Label">CSAM</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="CSB" class="Input-Field">
+                            <label for="" class="Input-Label">CSB</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="CSD" class="Input-Field">
+                            <label for="" class="Input-Label">CSD</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="CSSS" class="Input-Field">
+                            <label for="" class="Input-Label">CSSS</label>
+                        </div>
+                    </div>
+                    <div class="Sub-Section">
+                        <label class="Sub-Section-Label">Year</label>
+                        <div class="Input-Group">
+                            <select name="firstYear" class="Input-Field-Select">
+                                <option value="">None</option>
+                                <option value="">2021</option>
+                                <option value="">2020</option>
+                                <option value="">2019</option>
+                                <option value="">2018</option>
+                                <option value="">2017</option>
+                                <option value="">2016</option>
+                                <option value="">2015</option>
+                                <option value="">2014</option>
+                                <option value="">2013</option>
+                                <option value="">2012</option>
+                                <option value="">2011</option>
+                                <option value="">2010</option>
+                            </select>
+                            <p>To</p>
+                            <select name="secondYear" class="Input-Field-Select">
+                                <option value="">None</option>
+                                <option value="">2021</option>
+                                <option value="">2020</option>
+                                <option value="">2019</option>
+                                <option value="">2018</option>
+                                <option value="">2017</option>
+                                <option value="">2016</option>
+                                <option value="">2015</option>
+                                <option value="">2014</option>
+                                <option value="">2013</option>
+                                <option value="">2012</option>
+                                <option value="">2011</option>
+                                <option value="">2010</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Program</label>
+                        
+                        <div class="Input">
+                            <input type="checkbox" name="B-Tech" class="Input-Field">
+                            <label for="" class="Input-Label">B. Tech</label>
+                        </div>
+                        <div class="Input"> 
+                            <input type="checkbox" name="M-Tech" class="Input-Field">
+                            <label for="" class="Input-Label">M. Tech</label>
+                        </div>
+                        <div class="Input"> 
+                            <input type="checkbox" name="PhD" class="Input-Field">                    
+                            <label for="" class="Input-Label">PhD</label>   
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Faculty -->
+                <div class="Section-Heading">
+                    <p>Faculty</p>
+                </div>
+                <div class="Section">
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Department</label>
+                        <div class="Input">
+                            <input type="checkbox" name="CSE" class="Input-Field">
+                            <label for="" class="Input-Label">CSE</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="ECE" class="Input-Field">
+                            <label for="" class="Input-Label">ECE</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="MTH" class="Input-Field">
+                            <label for="" class="Input-Label">MTH</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="BIO" class="Input-Field">
+                            <label for="" class="Input-Label">BIO</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="DES" class="Input-Field">
+                            <label for="" class="Input-Label">DES</label>
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="SSH" class="Input-Field">
+                            <label for="" class="Input-Label">SSH</label>                    
+                        </div>
+                        <div class="Input">
+                            <input type="checkbox" name="OTHERS" class="Input-Field">
+                            <label for="" class="Input-Label">OTHERS</label>
+                        </div>
+                    </div>
+                    <div class="Sub-Section">
+                        <label for="" class="Sub-Section-Label">Program</label>
+                        
+                        <div class="Input">
+                            <input type="checkbox" name="B-Tech" class="Input-Field">
+                            <label for="" class="Input-Label">B. Tech</label>
+                        </div>
+                        <div class="Input"> 
+                            <input type="checkbox" name="M-Tech" class="Input-Field">
+                            <label for="" class="Input-Label">M. Tech</label>
+                        </div>
+                        <div class="Input"> 
+                            <input type="checkbox" name="PhD" class="Input-Field">                    
+                            <label for="" class="Input-Label">PhD</label>   
+                        </div>
+                    </div>
+                </div>  
+                <input type="submit" value="FILTER" class="Filter-Button">
+            </form>
+        </div>
+        <div class="Main-Panel">
+            <div class="Panel-Secion"></div>
+            <div class="Panel-Results">
+                <table class="Panel-Table">
+                    <tr class="Panel-Table-Row">
+                        <th class="Panel-Table-Heading">S. No</th>
+                        <th class="Panel-Table-Heading">Roll Number</th>
+                        <th class="Panel-Table-Heading">Name</th>
+                        <th class="Panel-Table-Heading">Branch</th>
+                        <th class="Panel-Table-Heading">Year</th>
+                        <th class="Panel-Table-Heading">Program</th>
+                        <th class="Panel-Table-Heading">Action One</th>
+                        <th class="Panel-Table-Heading">Action Two</th>
+                        <th class="Panel-Table-Heading">Action Three</th>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                    <tr class="Panel-Table-Row">
+                        <td class="Panel-Table-Heading">X</td>
+                        <td class="Panel-Table-Heading">2019xxx</td>
+                        <td class="Panel-Table-Heading">WASD QWERTY</td>
+                        <td class="Panel-Table-Heading">XXX</td>
+                        <td class="Panel-Table-Heading">20XX</td>
+                        <td class="Panel-Table-Heading">XXXXX</td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Red">First Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Blue">Second Button</button>
+                        </td>
+                        <td class="Panel-Table-Heading">
+                            <button class="Panel-Row-Button Violet">Third Button</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="{% static 'JavaScript/admin-script.js' %}"></script>
+</html>
