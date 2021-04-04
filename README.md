@@ -25,13 +25,13 @@ pip install -r requirements.txt
 
 Download the `haveAseat` repository and paste it inside the environment.
 
-# Start Server
+## Start Server
 
 ```
 python manage.py runserver
 ```
 
-# To check if django and other packages installed
+## To check if django and other packages installed
 
 ```
 pip freeze
