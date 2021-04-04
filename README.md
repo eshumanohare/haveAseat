@@ -22,3 +22,17 @@ To install the dependencies stored in `requirements.txt` use the following comma
 ```
 pip install -r requirements.txt
 ```
+
+Download the `haveAseat` repository and paste it inside the environment.
+
+# Start Server
+
+```
+python manage.py runserver
+```
+
+# To check if django and other packages installed
+
+```
+pip freeze
+```
