@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title of the page -->
+{% block title %}
+Login
+{% endblock %}
+
+<!-- Stylesheets -->
+{% block styles %}
+{% endblock %}
+
+<!-- JavaScript at the top -->
+{% block topJavaScript %}
+{% endblock %}
+
+<!-- Body Content -->
+{% block content %}
+<form action="{% url 'Core:login' %}" method="POST" id="Login-Form">
+    <input type="text" name="username" id="Username" class="Input-Field" placeholder="Enter your username">
+    <input type="password" name="password" id="Password" class="Input-Field" placeholder="Enter your password">
+    <select name="role" id="role" class="Input-Field">
+        <option value="">Admin</option>
+        <option value="">DOAA</option>
+        <option value="">Faculty</option>
+        <option value="">Student</option>
+    </select>
+    {% csrf_token %}
+    <input type="submit" value="Log In">
+</form>
+<p>Not registered yet? <a href="{% url 'Core:createAccount' %}">Register</a></p>
+{% endblock %}
+
+<!-- JavaScript at the bottom -->
+{% block bottomJavaScript %}
+{% endblock %}

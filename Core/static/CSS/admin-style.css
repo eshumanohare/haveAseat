@@ -22,6 +22,10 @@ body {
     display: none;
 }
 
+.Show {
+    display: block !important;
+}
+
 .Container {
     display: flex;
     position: relative;
@@ -43,7 +47,7 @@ body {
     overflow-y: auto;
 }
 
-.Section-Heading {
+.Form-Heading {
     display: flex;
     align-items: center;
     font-family: "Bebas Neue";
@@ -56,7 +60,7 @@ body {
     margin-top: 15px;
 }
 
-.Section-Heading:hover {
+.Form-Heading:hover {
     background-color: #495057;
 }
 
@@ -97,7 +101,7 @@ body {
 
 .Filter-Button {
     width: 100%;
-    margin: 15px 0px;
+    margin: 15px 0px 0px 0px;
     padding: 5px 10px;
     font-family: "Poppins";
     font-size: 14px;

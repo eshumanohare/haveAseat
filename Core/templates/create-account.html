@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- Title of the page -->
+{% block title %}
+Create an Account
+{% endblock %}
+
+<!-- Stylesheets -->
+{% block styles %}
+{% endblock %}
+
+<!-- JavaScript at the top -->
+{% block topJavaScript %}
+{% endblock %}
+
+<!-- Body Content -->
+{% block content %}
+<form action="{% url 'Core:createAccount' %}" method="POST" id="Create-Account-Form">
+    <input type="text" name="username" id="Username" class="Input-Field" placeholder="Enter your username">
+    <input type="email" name="email" id="Email" class="Input-Field" placeholder="Enter your email">
+    <input type="password" name="password" id="Password" class="Input-Field" placeholder="Enter your password">
+    <select name="role" id="role" class="Input-Field">
+        <option value="admin">Admin</option>
+        <option value="doaa">DOAA</option>
+        <option value="faculty">Faculty</option>
+        <option value="student">Student</option>
+    </select>
+    {% csrf_token %}
+    <input type="submit" value="Log In">
+</form>
+<p>Already registered? <a href="{% url 'Core:login' %}">Log In</a></p>
+{% endblock %}
+
+<!-- JavaScript at the bottom -->
+{% block bottomJavaScript %}
+{% endblock %}
