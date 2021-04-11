@@ -236,3 +236,7 @@ def facultiesToListOfDictionaries(outputs):
         results.append(result)
 
     return results
+    return render(request, "course-description.html", context = {})
+
+def homepage(request):
+    return render(request, "homepage.html", context = {})
