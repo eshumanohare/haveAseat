@@ -60,8 +60,9 @@ class DOAA(models.Model):
         verbose_name_plural = "DOAA"
 
 class Faculty(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     profilePicture = models.ImageField(upload_to = "Profile Pictures/Faculties/")
-    profielLink = models.URLField()
+    profileLink = models.URLField()
 
     class Meta:
         verbose_name = "Faculty"
@@ -75,6 +76,14 @@ class Course(models.Model):
     courseDescription = models.TextField()
     program = models.CharField(max_length = 50)
     department = models.ForeignKey(Department, on_delete = models.SET_NULL, null = True)
+
+class CourseFaculty(models.Model):
+    faculty = models.ForeignKey(Faculty, on_delete = models.CASCADE, related_name = "teaches")
+    course = models.ForeignKey(Course, on_delete = models.CASCADE, related_name = "taughtBy")    
+
+    class Meta:
+        verbose_name = "CourseFaculty"
+        verbose_name_plural = "CourseFaculties"
 
 class Announcement(models.Model):
     user = models.ForeignKey(User, on_delete = models.SET_NULL, null = True)

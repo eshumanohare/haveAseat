@@ -133,6 +133,8 @@ body {
 }
 
 .Panel-Row-Button {
+    display: block;
+    text-decoration: none;
     width: 100%;
     padding: 5px 10px;
     font-family: "Poppins";

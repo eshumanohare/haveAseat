@@ -109,6 +109,52 @@ def logoutView(request):
 
     return HttpResponseRedirect("/")
 
+def fetchFaculties(request):
+    if request.user.is_authenticated and request.method == "POST":
+        data = json.loads(request.body.decode("UTF-8"))
+        programs = data["programs"]
+        departments = data["departments"]
+        print(programs, departments)
+        programsSQLPart = " OR ".join([f"C.program = '{program}'" for program in programs])
+        departmentsSQLPart = " OR ".join([f"D.departmentName = '{department}'" for department in departments])        
+        wherePart = ""
+        whereConstraints = []
+
+        if programsSQLPart.strip() != "":
+            whereConstraints.append("(" + programsSQLPart + ")")
+
+        if departmentsSQLPart.strip() != "":
+            whereConstraints.append("(" + departmentsSQLPart + ")")
+
+        if len(whereConstraints) > 0:
+            wherePart = f" WHERE {' AND '.join(whereConstraints)}"
+
+        print(wherePart)
+
+        if wherePart.strip() != "":
+            sqlQuery = f"SELECT AU.username, AU.email, AU.first_name, AU.last_name, F.profileLink FROM Auth_User AS AU, (SELECT F.user_id, F.profileLink FROM Core_Faculty AS F, (SELECT DISTINCT CF.faculty_id FROM Core_CourseFaculty AS CF, (SELECT C.id FROM Core_Course AS C, Core_Department AS D {wherePart}) AS CC WHERE CF.course_id = CC.id) AS CF WHERE CF.faculty_id = F.id) AS F where AU.id = F.user_id;"
+        else:
+            sqlQuery = f"SELECT AU.username, AU.email, AU.first_name, AU.last_name, F.profileLink FROM Auth_User AS AU, (SELECT F.user_id, F.profileLink FROM Core_Faculty AS F, (SELECT DISTINCT CF.faculty_id FROM Core_CourseFaculty AS CF, (SELECT C.id FROM Core_Course AS C, Core_Department AS D) AS CC WHERE CF.course_id = CC.id) AS CF WHERE CF.faculty_id = F.id) AS F where AU.id = F.user_id;"
+
+        print(sqlQuery)
+
+        cursor.execute(sqlQuery)
+        sqlQueryOutput = cursor.fetchall()
+        print(sqlQueryOutput)
+
+        return JsonResponse({
+            "success": True,
+            "outputs": facultiesToListOfDictionaries(sqlQueryOutput)
+        })
+
+    return JsonResponse({
+        "success": False,
+    })
+
+def fetchStudents(request):
+    if request.user.is_authenticated and request.method == "POST":
+        data = json.loads(request.body.decode())
+
 def fetchCourses(request):
     if request.user.is_authenticated and request.method == "POST":
         data = json.loads(request.body.decode("UTF-8"))
@@ -176,3 +222,17 @@ def coursesToListOfDictionaries(outputs):
 
     return results
 
+def facultiesToListOfDictionaries(outputs):
+    results = []
+
+    for output in outputs:
+        result = {}
+        [('admin', 'admin@gmail.com', 'Admin', 'Ji', 'https://www.instagram.com/itsmrvaibhav')]
+        result["username"] = output[0]
+        result["email"] = output[1]
+        result["firstName"] = output[2]
+        result["lastName"] = output[3]
+        result["profileLink"] = output[4]
+        results.append(result)
+
+    return results

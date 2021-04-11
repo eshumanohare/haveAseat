@@ -14,6 +14,7 @@ urlpatterns = [
     path("student-panel/", views.studentPanel, name = "studentPanel"),
     path("course-description/", views.courseDescription, name = "courseDescription"),
     path("fetch-courses/", views.fetchCourses, name = "fetchCourses"),
+    path("fetch-faculties/", views.fetchFaculties, name = "fetchFaculties"),
 ]
 
 urlpatterns += static(

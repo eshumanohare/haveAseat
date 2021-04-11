@@ -45,6 +45,30 @@ window.onload = () => {
         panelTable.innerHTML = newHTML;
     }
 
+    function displayFaculties(outputs) {
+        let newHTML = `<tr class="Panel-Table-Row">
+        <th class="Panel-Table-Heading">S. No</th>
+        <th class="Panel-Table-Heading">Username</th>
+        <th class="Panel-Table-Heading">Name</th>
+        <th class="Panel-Table-Heading">Email</th>
+        <th class="Panel-Table-Heading">Profile Links</th>
+    </tr>`;
+
+        for (let i = 0 ; i < outputs.length ; i++) {
+            newHTML += `<tr class="Panel-Table-Row">
+            <td class="Panel-Table-Heading">${i}</td>  
+            <td class="Panel-Table-Heading">${outputs[i]["username"]}</td>
+            <td class="Panel-Table-Heading">${outputs[i]["firstName"] + " " + outputs[i]["lastName"]}</td>
+            <td class="Panel-Table-Heading">${outputs[i]["email"]}</td>    
+            <td class="Panel-Table-Heading">
+            <a href="${outputs[i]["profileLink"]}" target="_blank" class="Panel-Row-Button Red">Visit Profile</a>
+            </td>
+        </tr>`;
+        }    
+
+        panelTable.innerHTML = newHTML;
+    }
+
     const filterForm1 = document.getElementById("Filter-Form-1");
     const filterForm2 = document.getElementById("Filter-Form-2");
     const filterForm3 = document.getElementById("Filter-Form-3");
@@ -102,7 +126,7 @@ window.onload = () => {
             }
         });
 
-        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value
+        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
         const data = {
             "sections": selectedSections,
             "credits": selectedCredits,
@@ -136,6 +160,48 @@ window.onload = () => {
     };
 
     filterForm3.onsubmit = (event) => {
+        // Filtering selected departments
+        let departments = document.querySelectorAll("#Filter-Form-3 .Department");
+        let selectedDepartments = []
+
+        departments.forEach(function(item, index) {
+            if (item.checked) {
+                selectedDepartments.push(item.value);
+            }
+        });
+
+        // Filtering selected programs
+        let programs = document.querySelectorAll("#Filter-Form-3 .Program");
+        let selectedPrograms = []
+
+        programs.forEach(function(item, index) {
+            if (item.checked) {
+                selectedPrograms.push(item.value);
+            }
+        });
+
+        const csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+        const data = {        
+            "programs": selectedPrograms,
+            "departments": selectedDepartments,
+        };
+
+        fetch("/fetch-faculties/", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "X-CSRFToken": csrfToken,
+            }
+        })
+        .then(response => response.json())
+        .then(response => {
+            if (response["success"]) {
+                console.log(response["outputs"]);
+                displayFaculties(response["outputs"]);
+            } else {
+                alert("Some error occured while fetching the data");
+            }
+        });
         
         return false;
     };
