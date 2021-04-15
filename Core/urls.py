@@ -16,6 +16,8 @@ urlpatterns = [
     path("course-description/", views.courseDescription, name = "courseDescription"),
     path("fetch-courses/", views.fetchCourses, name = "fetchCourses"),
     path("fetch-faculties/", views.fetchFaculties, name = "fetchFaculties"),
+    path("delete-courses/",views.deleteCourses, name="deleteCourses"),
+    path("filter-courses/",views.filterCourses,name="filterCourses"),
 ]
 
 urlpatterns += static(
