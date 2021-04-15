@@ -7,8 +7,124 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from .models import *
 
 cursor = connection.cursor()
+
+############################### sql queries using api #############################
+
+# create queries
+
+def createCourses():
+     # creating an object
+        courseobj = Course(1, 'A', 'Introduction To Programming', 4,100,'Introduction of Programming is the first programming course in the college curriculum, and aims to bridge the gap between students who have prior coding experience and those who have none. The main goal of this course is to prepare students to understand basic algorithms and data structures, write organized code, and to gain practical experience with debugging, compiling and running programs.', 'B-Tech',1)
+
+        # object.save() executes the insert query into the database
+        courseobj.save()
+
+        courseobj1 = Course(2, 'B', 'Machine Learning', 4,200,'This is an introductory course on Machine Learning (ML) that is offered to undergraduate and graduate students. The contents are designed to cover both theoretical and practical aspects of several well-established ML techniques. The assignments will contain theory and programming questions that help strengthen the theoretical foundations as well as learn how to engineer ML solutions to work on simulated and publicly available real datasets. The project(s) will require students to develop a complete Machine Learning solution requiring preprocessing, design of the classifier/regressor, training and validation, testing and evaluation with quantitative performance comparisons.', 'B-Tech',2)
+
+        courseobj1.save()
+
+        courseobj2 = Course(3, 'A', 'Algorithm Design & Analysis', 4,120,'This is a follow-up course to DSA (Data Structures and Algorithms). The focus of this course in on the design of algorithms, proofs of correctness and methods to analyse resource requirements of their algorithms. Students learn fundamental algorithmic design paradigms such as greedy algorithms, dynamic programming, divide and conquer, etc. and also learn some more data structures. The later part of the course focuses on the limitations of algorithms. In particular, the theory of NP-completeness. Students are also required to design and implement algorithms using the techniques the learn.', 'B-Tech',3)
+
+        courseobj2.save()
+
+        courseobj3 = Course(4, 'B', 'Data Structures & Algorithms', 4,220,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'B-Tech',4)
+
+        courseobj3.save()
+
+        courseobj4 = Course(5, 'A', 'Statistics', 4,100,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'M-Tech',3)
+
+        courseobj4.save()
+
+        courseobj5 = Course(6, 'B', 'Genomic Algorithms', 2,50,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'PhD',1)
+
+        courseobj5.save()
+
+        courseobj6 = Course(7, 'A', 'Iski Topi Uske Sir', 2,10,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'M-Tech',4)
+
+        courseobj6.save()
+
+        courseList = [courseobj, courseobj1,courseobj2,courseobj3,courseobj4,courseobj5,courseobj6]
+
+        return courseList
+
+def createDepartment():
+    dep1 = Department(1,"CSE")
+    dep1.save()
+    dep2 = Department(2,"ECE")
+    dep2.save()
+    dep3 = Department(3,"MTH")
+    dep3.save()
+    dep4 = Department(4,"SSH")
+    dep4.save()
+
+# delete queries
+
+def deleteCourses(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            # courseList = createCourses()
+            snos = request.POST.getlist("courseList")
+            print(snos)
+            for i in snos:
+                courseObject = Course.objects.filter(id=i)
+                # print(courseObject[0].id)
+                for course in courseList:
+                    if len(courseObject) != 0 and course.id == courseObject[0].id:
+                        print(course.id)
+                        courseList.remove(course)
+                
+                courseObject.delete()
+
+            context = {'courseList': courseList}
+            return render(request, "student-panel.html", context)
+    else:
+        return HttpResponseRedirect("/")
+
+
+# read queries
+
+def filterCourses(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            checkBtech = request.POST.get("B-Tech")
+            checkMtech = request.POST.get("M-Tech")
+            checkPhD = request.POST.get("PhD")
+            
+            # print(type(checkBtech))
+
+            check4 = request.POST.get("cred4")
+            check2 = request.POST.get("cred2")
+
+            filteredCourses = []
+
+            if checkBtech == None and checkMtech == None and checkPhD == None:
+                querySet = Course.objects.filter(credits__in = [check4,check2])
+            else:
+                if check4 == None and check2 == None:
+                    querySet = Course.objects.filter(program__in = [checkBtech,checkMtech,checkPhD])
+                else:
+                    querySet = Course.objects.filter(program__in = [checkBtech,checkMtech,checkPhD],credits__in = [check4,check2])
+            # print(querySet)
+
+            for i in range(0,len(querySet)):
+                print(querySet[i].courseName)
+                filteredCourses.append(querySet[i])
+
+            context = {'courseList': filteredCourses}
+
+            return render(request,"student-panel.html", context)
+    else:
+        return HttpResponseRedirect("/")
+
+######## global lists ##########
+courseList = createCourses()
+
+
+####### calls for creating #####
+createDepartment()
 
 def index(request):
     if not request.user.is_authenticated:
@@ -28,12 +144,12 @@ def loginView(request):
             if user is not None:
                 login(request, user) # Logging in the user
                 print(f"{user.username} logged in successfully!")
-                send_mail(
-                    subject = f"{user.username}, you just logged in with your account on www.haveASeat.com",
-                    message = f"You logged in using your account on {datetime.date.today().strftime('%d %B, %Y, %A')} at {datetime.datetime.now().time().strftime('%H:%M:%S %p')}.",
-                    from_email = settings.EMAIL_HOST_USER,
-                    recipient_list = [user.email]
-                )
+                # send_mail(
+                #     subject = f"{user.username}, you just logged in with your account on www.haveASeat.com",
+                #     message = f"You logged in using your account on {datetime.date.today().strftime('%d %B, %Y, %A')} at {datetime.datetime.now().time().strftime('%H:%M:%S %p')}.",
+                #     from_email = settings.EMAIL_HOST_USER,
+                #     recipient_list = [user.email]
+                # )
 
                 return HttpResponseRedirect("/")
             else:
@@ -69,12 +185,12 @@ def createAccount(request):
             print(f" Email -> {email}")
             print(f" Password -> {password}")
             print(f" Role -> {role}")
-            send_mail(
-                    subject = f"Welcome to www.haveASeat.com, {user.username}",
-                    message = f"Your account on www.haveASeat.com was successfully created {datetime.date.today().strftime('%d %B, %Y, %A')} at {datetime.datetime.now().time().strftime('%H:%M:%S %p')}.",
-                    from_email = settings.EMAIL_HOST_USER,
-                    recipient_list = [user.email]
-                )
+            # send_mail(
+            #         subject = f"Welcome to www.haveASeat.com, {user.username}",
+            #         message = f"Your account on www.haveASeat.com was successfully created {datetime.date.today().strftime('%d %B, %Y, %A')} at {datetime.datetime.now().time().strftime('%H:%M:%S %p')}.",
+            #         from_email = settings.EMAIL_HOST_USER,
+            #         recipient_list = [user.email]
+            #     )
 
             return HttpResponseRedirect("/login")
 
@@ -92,26 +208,6 @@ def adminPanel(request):
 
 def studentPanel(request):
     if request.user.is_authenticated:
-        # creating an object
-        courseobj = Course(1,'CSE101', 'A', 'Introduction To Programming', 4,100,'Introduction of Programming is the first programming course in the college curriculum, and aims to bridge the gap between students who have prior coding experience and those who have none. The main goal of this course is to prepare students to understand basic algorithms and data structures, write organized code, and to gain practical experience with debugging, compiling and running programs.', 'B-Tech')
-
-        # object.save() executes the insert query into the database
-        courseobj.save()
-
-        courseobj1 = Course(2,'CSE343', 'B', 'Machine Learning', 4,200,'This is an introductory course on Machine Learning (ML) that is offered to undergraduate and graduate students. The contents are designed to cover both theoretical and practical aspects of several well-established ML techniques. The assignments will contain theory and programming questions that help strengthen the theoretical foundations as well as learn how to engineer ML solutions to work on simulated and publicly available real datasets. The project(s) will require students to develop a complete Machine Learning solution requiring preprocessing, design of the classifier/regressor, training and validation, testing and evaluation with quantitative performance comparisons.', 'B-Tech')
-
-        courseobj1.save()
-
-        courseobj2 = Course(3,'CSE222', 'A/B', 'Algorithm Design & Analysis', 4,120,'This is a follow-up course to DSA (Data Structures and Algorithms). The focus of this course in on the design of algorithms, proofs of correctness and methods to analyse resource requirements of their algorithms. Students learn fundamental algorithmic design paradigms such as greedy algorithms, dynamic programming, divide and conquer, etc. and also learn some more data structures. The later part of the course focuses on the limitations of algorithms. In particular, the theory of NP-completeness. Students are also required to design and implement algorithms using the techniques the learn.', 'B-Tech')
-
-        courseobj2.save()
-
-        courseobj3 = Course(4,'CSE102', 'A/B', 'Data Structures & Algorithms', 4,220,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'B-Tech')
-
-        courseobj3.save()
-
-        courseList= {courseobj, courseobj1, courseobj2, courseobj3}
-
         context = {
             'courseList': courseList
         }
