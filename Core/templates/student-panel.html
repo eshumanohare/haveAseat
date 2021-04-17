@@ -46,6 +46,10 @@
             </div>
             <input type="submit" value="FILTER" class="Enroll-Button" style="margin-right: 20%; width: 70%;">
             </form>
+            <!-- <form action="{% url 'Core:getAllCourses' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="FETCH COURSES" class="Enroll-Button" style="margin-right: 20%; width: 70%;">
+            </form> -->
         </div>
         {% block content %}
         <div class="Main-Panel">
@@ -55,7 +59,6 @@
                     <table class="Panel-Table">
                         <tr class="Panel-Table-Row">
                             <th class="Panel-Table-Heading">S No.</th>
-                            <th class="Panel-Table-Heading">Course Code</th>
                             <th class="Panel-Table-Heading">Course Name</th>
                             <th class="Panel-Table-Heading">Credits</th>
                             <th class="Panel-Table-Heading">Offered To</th>
@@ -64,22 +67,21 @@
                         </tr>
                         
                         {% for course in courseList %}
+                        {% if course != None and course.isLive == 1 %}
                         <tr class="Panel-Table-Row">
-                            {% if course != None and course.isLive == 1%}
                             <td class="Panel-Table-Heading" name="id">{{course.id}}</td>
-                            <td class="Panel-Table-Heading">{{course.code}}</td>
-                            <td class="Panel-Table-Heading">{{course.courseName}}</td>
+                            <td class="Panel-Table-Heading"><a href="/{{course.courseName}}/" style="text-decoration: none; color: black">{{course.courseName}}</a></td>
                             <td class="Panel-Table-Heading">{{course.credits}}</th>
                             <td class="Panel-Table-Heading">{{course.program}}</td>
                             <td class="Panel-Table-Heading">
                                 <input type="checkbox" id="courses" name="courseList" value="{{course.id}}">
                             </td>
-                            {% endif %}
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </table>
                 </div>
-                <!-- <input type="submit" value="Enroll" class="Enroll-Button"> -->
+                <!-- <input type="submit" value="Fetch Courses" class="Enroll-Button"> -->
                 <input style="margin-right:10px;" type="submit" value="Delete" class="Enroll-Button">
             </form>
         </div>
