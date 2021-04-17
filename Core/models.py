@@ -32,7 +32,7 @@ class Department(models.Model):
 class Admin(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     profilePicture = models.ImageField(upload_to = "Profile Pictures/Admins/")
-    program = models.CharField(max_length = 50)
+    program = models.CharField(max_length = 50)    
 
     class Meta:
         verbose_name = "Admin"
@@ -41,6 +41,7 @@ class Admin(models.Model):
 class Student(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     rollNumber = models.IntegerField(unique = True)
+    dateOfJoining = models.DateField(auto_now = True)
     graduationYear = models.IntegerField(null = False, blank = False)
     profilePicture = models.ImageField(upload_to = "Profile Pictures/Students/")
     batch = models.CharField(max_length = 50)

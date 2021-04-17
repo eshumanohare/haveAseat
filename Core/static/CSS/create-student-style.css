@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins&family=Roboto&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Poppins";
+}
+
+body {
+    background-color: #F5F5F5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#Form-Heading {
+    font-family: "Bebas Neue";
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+#Create-Student-Form-Submit {
+    margin-top: 10px;
+    padding: 5px 10px;
+    outline: none;
+    background-color: #2ECC71;
+    color: #FFFFFF;
+    border: none;    
+    cursor: pointer;
+}
+
+#Create-Student-Form-Submit:hover {
+    background-color: #28B463;
+}
+
+#Create-Student-Form {
+    padding: 25px;
+    display: flex;
+    width: 500px;
+    background-color: #FFFFFF;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Create-Student-Form-Label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.Create-Student-Form-Field {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    outline: none;
+    border: 1px solid #B0B0B0;
+}

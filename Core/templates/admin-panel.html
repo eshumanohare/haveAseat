@@ -100,69 +100,70 @@
             <div class="Form-Heading">
                 <p>Students</p>
             </div>
+
             <form id="Filter-Form-2" class="Form" method="POST">
                 <!-- Students -->
                 <div class="Section">
                     <div class="Sub-Section">
                         <label for="" class="Sub-Section-Label">Branches</label>
                         <div class="Input">
-                            <input type="checkbox" name="CSE" class="Input-Field">
+                            <input class="Branch" type="checkbox" name="CSE" value="CSE" class="Input-Field">
                             <label for="" class="Input-Label">CSE</label>
                         </div>
                         <div class="Input">
-                            <input type="checkbox" name="ECE" class="Input-Field">
+                            <input class="Branch" type="checkbox" name="ECE" value="ECE" class="Input-Field">
                             <label for="" class="Input-Label">ECE</label>
                         </div>
                         <div class="Input">
-                            <input type="checkbox" name="CSAM" class="Input-Field">
+                            <input class="Branch" type="checkbox" name="CSAM" value="CSAM" class="Input-Field">
                             <label for="" class="Input-Label">CSAM</label>
                         </div>
                         <div class="Input">
-                            <input type="checkbox" name="CSB" class="Input-Field">
+                            <input class="Branch" type="checkbox" name="CSB" value="CSB" class="Input-Field">
                             <label for="" class="Input-Label">CSB</label>
                         </div>
                         <div class="Input">
-                            <input type="checkbox" name="CSD" class="Input-Field">
+                            <input class="Branch" type="checkbox" name="CSD" value="CSD" class="Input-Field">
                             <label for="" class="Input-Label">CSD</label>
                         </div>
                         <div class="Input">
-                            <input type="checkbox" name="CSSS" class="Input-Field">
+                            <input class="Branch" type="checkbox" name="CSSS" value="CSSS" class="Input-Field">
                             <label for="" class="Input-Label">CSSS</label>
                         </div>
                     </div>
                     <div class="Sub-Section">
                         <label class="Sub-Section-Label">Year</label>
                         <div class="Input-Group">
-                            <select name="firstYear" class="Input-Field-Select">
-                                <option value="">None</option>
-                                <option value="">2021</option>
-                                <option value="">2020</option>
-                                <option value="">2019</option>
-                                <option value="">2018</option>
-                                <option value="">2017</option>
-                                <option value="">2016</option>
-                                <option value="">2015</option>
-                                <option value="">2014</option>
-                                <option value="">2013</option>
-                                <option value="">2012</option>
-                                <option value="">2011</option>
-                                <option value="">2010</option>
+                            <select class="Year" name="firstYear" class="Input-Field-Select">
+                                <option value="None">None</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
                             </select>
                             <p>To</p>
-                            <select name="secondYear" class="Input-Field-Select">
-                                <option value="">None</option>
-                                <option value="">2021</option>
-                                <option value="">2020</option>
-                                <option value="">2019</option>
-                                <option value="">2018</option>
-                                <option value="">2017</option>
-                                <option value="">2016</option>
-                                <option value="">2015</option>
-                                <option value="">2014</option>
-                                <option value="">2013</option>
-                                <option value="">2012</option>
-                                <option value="">2011</option>
-                                <option value="">2010</option>
+                            <select class="Year" name="secondYear" class="Input-Field-Select">
+                                <option value="None">None</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                                <option value="2014">2014</option>
+                                <option value="2013">2013</option>
+                                <option value="2012">2012</option>
+                                <option value="2011">2011</option>
+                                <option value="2010">2010</option>
                             </select>
                         </div>
                     </div>
@@ -170,15 +171,15 @@
                         <label for="" class="Sub-Section-Label">Program</label>
                         
                         <div class="Input">
-                            <input type="checkbox" name="B-Tech" class="Input-Field">
+                            <input class="Program" type="checkbox" name="B-Tech" value="B-Tech" class="Input-Field">
                             <label for="" class="Input-Label">B. Tech</label>
                         </div>
                         <div class="Input"> 
-                            <input type="checkbox" name="M-Tech" class="Input-Field">
+                            <input class="Program" type="checkbox" name="M-Tech" value="M-Tech" class="Input-Field">
                             <label for="" class="Input-Label">M. Tech</label>
                         </div>
                         <div class="Input"> 
-                            <input type="checkbox" name="PhD" class="Input-Field">                    
+                            <input class="Program" type="checkbox" name="PhD" value="PhD" class="Input-Field">                    
                             <label for="" class="Input-Label">PhD</label>   
                         </div>
                     </div>
@@ -189,6 +190,7 @@
             <div class="Form-Heading">
                 <p>Faculty</p>
             </div>
+
             <form id="Filter-Form-3" class="Form" method="POST">
                 <!-- Faculty -->
                 <div class="Section">
@@ -244,39 +246,9 @@
             </form>
         </div>
         <div class="Main-Panel">
-            <div class="Panel-Secion"></div>
+            <div id="Panel-Message"></div>
             <div class="Panel-Results">
                 <table class="Panel-Table" id="Panel-Table">
-                    <tr class="Panel-Table-Row">
-                        <th class="Panel-Table-Heading">S. No</th>
-                        <th class="Panel-Table-Heading">Roll Number</th>
-                        <th class="Panel-Table-Heading">Name</th>
-                        <th class="Panel-Table-Heading">Branch</th>
-                        <th class="Panel-Table-Heading">Year</th>
-                        <th class="Panel-Table-Heading">Program</th>
-                        <th class="Panel-Table-Heading">Action One</th>
-                        <th class="Panel-Table-Heading">Action Two</th>
-                        <th class="Panel-Table-Heading">Action Three</th>
-                    </tr>
-                    {% for i in range %}
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">2019xxx</td>
-                            <td class="Panel-Table-Heading">WASD QWERTY</td>
-                            <td class="Panel-Table-Heading">XXX</td>
-                            <td class="Panel-Table-Heading">20XX</td>
-                            <td class="Panel-Table-Heading">XXXXX</td>
-                            <td class="Panel-Table-Heading">
-                                <button class="Panel-Row-Button Red">First Button</button>
-                            </td>
-                            <td class="Panel-Table-Heading">
-                                <button class="Panel-Row-Button Blue">Second Button</button>
-                            </td>
-                            <td class="Panel-Table-Heading">
-                                <button class="Panel-Row-Button Violet">Third Button</button>
-                            </td>
-                        </tr>
-                    {% endfor %}
                 </table>
             </div>
         </div>

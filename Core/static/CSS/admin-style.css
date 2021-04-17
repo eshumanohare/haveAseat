@@ -47,6 +47,41 @@ body {
     overflow-y: auto;
 }
 
+/* Panel Message */
+#Deleted-Student-Card {
+    position: relative;
+    padding: 12.5px;
+    padding-top: 25px;
+    margin-bottom: 25px;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#Deleted-Student-Card-Cross {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.Deleted-Student-Details {
+    margin: 12.5px;
+    font-family: "Poppins";
+}
+
+.Deleted-Student-Details-Heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.Deleted-Student-Details-Text {
+    font-size: 14px;
+}
+
 .Form-Heading {
     display: flex;
     align-items: center;
