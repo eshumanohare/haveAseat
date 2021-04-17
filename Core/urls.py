@@ -21,7 +21,9 @@ urlpatterns = [
     path("insert-course-admin/",views.insertCourseAdmin,name="insertCourseAdmin"),
     path("delete-course-admin/",views.deleteCourseAdmin,name="deleteCourseAdmin"),
     path("set-isLive-1-admin/",views.setisLive1,name="setisLive1"),
-    path("set-isLive-0-admin/",views.setisLive0,name="setisLive0")
+    path("set-isLive-0-admin/",views.setisLive0,name="setisLive0"),
+    path('getAllCourses/',views.getAllCourses,name='getAllCourses'),
+    path("<course_courseName>/",views.courseDescription,name="courseDescription"),
 ]
 
 urlpatterns += static(
