@@ -77,6 +77,7 @@ class Course(models.Model):
     courseDescription = models.TextField()
     program = models.CharField(max_length = 50)
     department = models.ForeignKey(Department, on_delete = models.SET_NULL, null = True)
+    isLive = models.IntegerField(default = 0)
 
 class CourseFaculty(models.Model):
     faculty = models.ForeignKey(Faculty, on_delete = models.CASCADE, related_name = "teaches")

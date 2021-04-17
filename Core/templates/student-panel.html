@@ -11,120 +11,81 @@
 <body>
     <div class="Container">
         <div class="Left-Side-Panel">
+            <form action="{% url 'Core:filterCourses' %}" method="POST" id="filterCourses">
+                {% csrf_token %}
             <div class="Section-Heading">
-                <p>Course Registration</p>
+                <p>Courses</p>
             </div>
-            <div class="Section-Heading">
-                <p><a href="#" style="text-decoration: none; color: white;">Announcements</a></p>
+            <div class="Section">
+                <div class="Sub-Section">
+                    <label for="" class="Sub-Section-Label">Program</label>
+                    <div class="Input">
+                        <input type="checkbox" name="B-Tech" class="Input-Field" value="B-Tech">
+                        <label for="" class="Input-Label">B. Tech</label>
+                    </div>
+                    <div class="Input">
+                        <input type="checkbox" name="M-Tech" class="Input-Field" value="M-Tech">
+                        <label for="" class="Input-Label">M. Tech</label>
+                    </div>
+                    <div class="Input">
+                        <input type="checkbox" name="PhD" class="Input-Field" value="PhD">                    
+                        <label for="" class="Input-Label">PhD</label>
+                    </div>
+                </div>
+                <div class="Sub-Section">
+                    <label for="" class="Sub-Section-Label">Credits</label>
+                    <div class="Input">
+                        <input type="checkbox" name="cred4" class="Input-Field" value="4">
+                        <label for="" class="Input-Label">4</label>
+                    </div>
+                    <div class="Input">
+                        <input type="checkbox" name="cred2" class="Input-Field" value="2">
+                        <label for="" class="Input-Label">2</label>
+                    </div>
+                </div>
             </div>
+            <input type="submit" value="FILTER" class="Enroll-Button" style="margin-right: 20%; width: 70%;">
+            </form>
+            <!-- <form action="{% url 'Core:getAllCourses' %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="FETCH COURSES" class="Enroll-Button" style="margin-right: 20%; width: 70%;">
+            </form> -->
         </div>
+        {% block content %}
         <div class="Main-Panel">
-            <form action="#" method="POST">
+            <form action="{% url 'Core:deleteCourses' %}" method="POST" id="deleteCourses">
+                {% csrf_token %}
                 <div class="Panel-Results">
                     <table class="Panel-Table">
                         <tr class="Panel-Table-Row">
-                            <th class="Panel-Table-Heading">S. No</th>
-                            <th class="Panel-Table-Heading">Course Code</th>
+                            <th class="Panel-Table-Heading">S No.</th>
                             <th class="Panel-Table-Heading">Course Name</th>
                             <th class="Panel-Table-Heading">Credits</th>
                             <th class="Panel-Table-Heading">Offered To</th>
-                            <th class="Panel-Table-Heading">Enroll</th>
+                            <!-- <th class="Panel-Table-Heading">Enroll</th> -->
+                            <th class="Panel-Table-Heading">Remove</th>
                         </tr>
+                        
+                        {% for course in courseList %}
+                        {% if course != None and course.isLive == 1 %}
                         <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
+                            <td class="Panel-Table-Heading" name="id">{{course.id}}</td>
+                            <td class="Panel-Table-Heading"><a href="/{{course.courseName}}/" style="text-decoration: none; color: black">{{course.courseName}}</a></td>
+                            <td class="Panel-Table-Heading">{{course.credits}}</th>
+                            <td class="Panel-Table-Heading">{{course.program}}</td>
                             <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
+                                <input type="checkbox" id="courses" name="courseList" value="{{course.id}}">
                             </td>
                         </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
-                        <tr class="Panel-Table-Row">
-                            <td class="Panel-Table-Heading">X</td>
-                            <td class="Panel-Table-Heading">CSEXXX</td>
-                            <td class="Panel-Table-Heading">Introduction to Programming</td>
-                            <td class="Panel-Table-Heading">4</th>
-                            <td class="Panel-Table-Heading">UG/PG</td>
-                            <td class="Panel-Table-Heading">
-                                <input type="checkbox" id="CXXX" name="CXXX" value="CXXX">
-                            </td>
-                        </tr>
+                        {% endif %}
+                        {% endfor %}
                     </table>
                 </div>
-                <input type="submit" value="Enroll" class="Enroll-Button">
+                <!-- <input type="submit" value="Fetch Courses" class="Enroll-Button"> -->
+                <input style="margin-right:10px;" type="submit" value="Delete" class="Enroll-Button">
             </form>
         </div>
+        {% endblock %}
     </div>
 </body>
 <script src="{% static 'JavaScript/admin-script.js' %}"></script>

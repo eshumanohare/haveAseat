@@ -250,6 +250,45 @@
             <div class="Panel-Results">
                 <table class="Panel-Table" id="Panel-Table">
                 </table>
+                // Insert Course from Admin Panel
+                <div>
+                    <form action="{% url 'Core:insertCourseAdmin' %}" method="POST" id="insertCourseAdmin">
+                        <input type="integer" name="id" id="id" class="Input-Field" placeholder="ID">
+                        <input type="text" name="section" id="section" class="Input-Field" placeholder="Section">
+                        <input type="text" name="courseName" id="courseName" class="Input-Field" placeholder="Course Name">
+                        <input type="integer" name="credits" id="credits" class="Input-Field" placeholder="Credits">
+                        <input type="integer" name="studentCap" id="studentCap" class="Input-Field" placeholder="Student Cap">
+                        <input type="text" name="courseDescription" id="courseDescription" class="Input-Field" placeholder="Course Description">
+                        <input type="text" name="program" id="program" class="Input-Field" placeholder="Program">
+                        <input type="text" name="department" id="department" class="Input-Field" placeholder="department">
+                        {% csrf_token %}
+                        <input type="submit" value="Insert" class="Insert-Course-Button">
+                    </form>
+                </div>
+                // Delete Course using Admin Panel
+                <div>
+                    <form action="{% url 'Core:deleteCourseAdmin' %}" method="POST" id="deleteCourseAdmin">
+                        <input type="integer" name="id" id="id" class="Input-Field" placeholder="ID">
+                        {% csrf_token %}
+                        <input type="submit" value="Delete" class="Delete-Course-Button">
+                    </form>
+                </div>
+                // Make Course Live from Admin Panel
+                <div>
+                    <form action="{% url 'Core:setisLive1' %}" method="POST" id="setisLive1">
+                        <input type="integer" name="id" id="id" class="Input-Field" placeholder="ID">
+                        {% csrf_token %}
+                        <input type="submit" value="Make Live" class="Make-Live-Course-Button">
+                    </form>
+                // Make Course Inactive from Admin Panel
+                <div>
+                    <form action="{% url 'Core:setisLive0' %}" method="POST" id="setisLive0">
+                        <input type="integer" name="id" id="id" class="Input-Field" placeholder="ID">
+                        {% csrf_token %}
+                        <input type="submit" value="Make Inactive" class="Make-Inactive-Course-Button">
+                    </form>
+                </div>
+                </div>
             </div>
         </div>
     </div>
