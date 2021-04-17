@@ -65,7 +65,7 @@
                         
                         {% for course in courseList %}
                         <tr class="Panel-Table-Row">
-                            {% if course != None %}
+                            {% if course != None and course.isLive == 1%}
                             <td class="Panel-Table-Heading" name="id">{{course.id}}</td>
                             <td class="Panel-Table-Heading">{{course.code}}</td>
                             <td class="Panel-Table-Heading">{{course.courseName}}</td>

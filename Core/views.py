@@ -17,39 +17,39 @@ cursor = connection.cursor()
 
 def createCourses():
      # creating an object
-        courseobj = Course(1, 'A', 'Introduction To Programming', 4,100,'Introduction of Programming is the first programming course in the college curriculum, and aims to bridge the gap between students who have prior coding experience and those who have none. The main goal of this course is to prepare students to understand basic algorithms and data structures, write organized code, and to gain practical experience with debugging, compiling and running programs.', 'B-Tech',1)
+        courseobj = Course(1, 'A', 'Introduction To Programming', 4,100,'Introduction of Programming is the first programming course in the college curriculum, and aims to bridge the gap between students who have prior coding experience and those who have none. The main goal of this course is to prepare students to understand basic algorithms and data structures, write organized code, and to gain practical experience with debugging, compiling and running programs.', 'B-Tech', 1, 1)
 
         # object.save() executes the insert query into the database
         courseobj.save()
 
-        courseobj1 = Course(2, 'B', 'Machine Learning', 4,200,'This is an introductory course on Machine Learning (ML) that is offered to undergraduate and graduate students. The contents are designed to cover both theoretical and practical aspects of several well-established ML techniques. The assignments will contain theory and programming questions that help strengthen the theoretical foundations as well as learn how to engineer ML solutions to work on simulated and publicly available real datasets. The project(s) will require students to develop a complete Machine Learning solution requiring preprocessing, design of the classifier/regressor, training and validation, testing and evaluation with quantitative performance comparisons.', 'B-Tech',2)
+        courseobj1 = Course(2, 'B', 'Machine Learning', 4,200,'This is an introductory course on Machine Learning (ML) that is offered to undergraduate and graduate students. The contents are designed to cover both theoretical and practical aspects of several well-established ML techniques. The assignments will contain theory and programming questions that help strengthen the theoretical foundations as well as learn how to engineer ML solutions to work on simulated and publicly available real datasets. The project(s) will require students to develop a complete Machine Learning solution requiring preprocessing, design of the classifier/regressor, training and validation, testing and evaluation with quantitative performance comparisons.', 'B-Tech', 2, 0)
 
         courseobj1.save()
 
-        courseobj2 = Course(3, 'A', 'Algorithm Design & Analysis', 4,120,'This is a follow-up course to DSA (Data Structures and Algorithms). The focus of this course in on the design of algorithms, proofs of correctness and methods to analyse resource requirements of their algorithms. Students learn fundamental algorithmic design paradigms such as greedy algorithms, dynamic programming, divide and conquer, etc. and also learn some more data structures. The later part of the course focuses on the limitations of algorithms. In particular, the theory of NP-completeness. Students are also required to design and implement algorithms using the techniques the learn.', 'B-Tech',3)
+        courseobj2 = Course(3, 'A', 'Algorithm Design & Analysis', 4,120,'This is a follow-up course to DSA (Data Structures and Algorithms). The focus of this course in on the design of algorithms, proofs of correctness and methods to analyse resource requirements of their algorithms. Students learn fundamental algorithmic design paradigms such as greedy algorithms, dynamic programming, divide and conquer, etc. and also learn some more data structures. The later part of the course focuses on the limitations of algorithms. In particular, the theory of NP-completeness. Students are also required to design and implement algorithms using the techniques the learn.', 'B-Tech', 3, 0)
 
         courseobj2.save()
 
-        courseobj3 = Course(4, 'B', 'Data Structures & Algorithms', 4,220,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'B-Tech',4)
+        courseobj3 = Course(4, 'B', 'Data Structures & Algorithms', 4,220,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'B-Tech', 4, 0)
 
         courseobj3.save()
 
-        courseobj4 = Course(5, 'A', 'Statistics', 4,100,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'M-Tech',3)
+        courseobj4 = Course(5, 'A', 'Statistics', 4,100,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'M-Tech', 3, 0)
 
         courseobj4.save()
 
-        courseobj5 = Course(6, 'B', 'Genomic Algorithms', 2,50,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'PhD',1)
+        courseobj5 = Course(6, 'B', 'Genomic Algorithms', 2,50,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'PhD', 1, 1)
 
         courseobj5.save()
 
-        courseobj6 = Course(7, 'A', 'Iski Topi Uske Sir', 2,10,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'M-Tech',4)
+        courseobj6 = Course(7, 'A', 'Iski Topi Uske Sir', 2,10,'This course is aimed at giving students a background in basic data structures and algorithms along with their impact in solving real life problems using a computer. The major focus will be on covering the basic data structures, b) Algorithm analysis using recurrence relations and c) problem solving using Java', 'M-Tech', 4, 1)
 
         courseobj6.save()
 
         courseList = [courseobj, courseobj1,courseobj2,courseobj3,courseobj4,courseobj5,courseobj6]
 
         return courseList
-
+        
 def createDepartment():
     dep1 = Department(1,"CSE")
     dep1.save()
@@ -60,8 +60,64 @@ def createDepartment():
     dep4 = Department(4,"SSH")
     dep4.save()
 
-# delete queries
+# insert course from admin panel
+def insertCourseAdmin(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            department = Department.objects.get(departmentName = request.POST.get('department'))
+            newCourse = Course(id = request.POST.get('id'), section = request.POST.get('section'), courseName = request.POST.get('courseName'), credits = request.POST.get('credits'), studentCap = request.POST.get('studentCap'), courseDescription = request.POST.get('courseDescription'), program = request.POST.get('program'), department = department, isLive = 0)
+            newCourse.save()
+            print("Saved")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
 
+# delete course from admin panel
+def deleteCourseAdmin(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.delete()
+            print("Deleted")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
+# make isLive=1 courses
+# make Course Live from Admin Panel
+def setisLive1(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.isLive=1
+            course.save()
+            print("Course is live.")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
+# make isLive=0 courses
+# make Course Inactive from Admin Panel
+def setisLive0(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.isLive=0
+            course.save()
+            print("Course has been removed from live courses.")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
+# delete queries
 def deleteCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -85,7 +141,6 @@ def deleteCourses(request):
 
 
 # read queries
-
 def filterCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -119,12 +174,11 @@ def filterCourses(request):
     else:
         return HttpResponseRedirect("/")
 
-######## global lists ##########
-courseList = createCourses()
-
-
 ####### calls for creating #####
 createDepartment()
+
+######## global lists ##########
+courseList = createCourses()
 
 def index(request):
     if not request.user.is_authenticated:
@@ -137,6 +191,7 @@ def loginView(request):
         if request.method == "POST":
             username = request.POST.get("username")
             password = request.POST.get("password")
+            role = request.POST.get("role")
 
             # Authenticating the user
             user = authenticate(username = username, password = password)
@@ -150,8 +205,7 @@ def loginView(request):
                 #     from_email = settings.EMAIL_HOST_USER,
                 #     recipient_list = [user.email]
                 # )
-
-                return HttpResponseRedirect("/")
+                return HttpResponseRedirect("/"+role+"-panel")
             else:
                 return render(request, "login.html", context = {
                     "messages": [
@@ -181,6 +235,11 @@ def createAccount(request):
             )
             user.set_password(password)
             user.save()
+            userRole = UserRole(
+                user = user,
+                role = role
+            )
+            userRole.save()
             print(f" Username -> {username}")
             print(f" Email -> {email}")
             print(f" Password -> {password}")
@@ -211,6 +270,7 @@ def studentPanel(request):
         context = {
             'courseList': courseList
         }
+        print(request.user.username)
         return render(request, "student-panel.html", context)
     else:
         return HttpResponseRedirect("/")

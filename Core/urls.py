@@ -18,6 +18,10 @@ urlpatterns = [
     path("fetch-faculties/", views.fetchFaculties, name = "fetchFaculties"),
     path("delete-courses/",views.deleteCourses, name="deleteCourses"),
     path("filter-courses/",views.filterCourses,name="filterCourses"),
+    path("insert-course-admin/",views.insertCourseAdmin,name="insertCourseAdmin"),
+    path("delete-course-admin/",views.deleteCourseAdmin,name="deleteCourseAdmin"),
+    path("set-isLive-1-admin/",views.setisLive1,name="setisLive1"),
+    path("set-isLive-0-admin/",views.setisLive0,name="setisLive0")
 ]
 
 urlpatterns += static(
