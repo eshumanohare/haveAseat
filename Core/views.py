@@ -84,7 +84,7 @@ def createPreReq():
     return preList
 
 ######## for preReq ###########
-preReqList = createPreReq()
+# preReqList = createPreReq()
 
 # insert course from admin panel
 def insertCourseAdmin(request):
@@ -95,11 +95,7 @@ def insertCourseAdmin(request):
         if request.method == "POST" and role.role=='admin':
             department = Department.objects.get(departmentName = request.POST.get('department'))
             newCourse = Course(id = request.POST.get('id'), section = request.POST.get('section'), courseName = request.POST.get('courseName'), credits = request.POST.get('credits'), studentCap = request.POST.get('studentCap'), courseDescription = request.POST.get('courseDescription'), program = request.POST.get('program'), department = department, isLive = 0)
-            
-            courseList.append(newCourse)
-
             newCourse.save()
-            
             print("Saved")
         return HttpResponseRedirect("/"+role.role+"-panel")
     return HttpResponseRedirect("/")
@@ -117,12 +113,6 @@ def setisLive1(request):
         if request.method == "POST" and role.role=='admin':
             course = Course.objects.get(id = request.POST.get('id'))
             course.isLive=1
-
-            # reflecting the change in courseList
-            # for i in courseList:
-            #     if i.id == course.id:
-            #         courseList[i.id].isLive = 1
-
             course.save()
             print("Course is live.")
         return HttpResponseRedirect("/"+role.role+"-panel")
@@ -175,21 +165,13 @@ def deleteCourseAdmin(request):
         role = UserRole.objects.get(user=user)
         if request.method == "POST" and role.role=='admin':
             course = Course.objects.get(id = request.POST.get('id'))
-            
-            # removing the course from courseList
-            for i in courseList:
-                if i.id == course.id:
-                    courseList.remove(i)
-        
             course.delete()
-
             print("Deleted")
         return HttpResponseRedirect("/"+role.role+"-panel")
     return HttpResponseRedirect("/")
 
 
 # read queries
-
 def filterCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -311,9 +293,11 @@ def createAccount(request):
 
 def adminPanel(request):
     if request.user.is_authenticated:
-        return render(request, "admin-panel.html", context = {
-            "range": range(100),
-        })
+        courses=Course.objects.all()
+        context = {
+            'courseList': courses,
+        }
+        return render(request, "admin-panel.html", context)
     else:
         return HttpResponseRedirect("/")
 
