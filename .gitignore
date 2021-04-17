@@ -5,3 +5,4 @@ db.sqlite3
 */migrations/*
 *.pyc
 __pycache__/*
+*/__pycache__/*
