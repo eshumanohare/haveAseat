@@ -20,10 +20,10 @@ Login
     <input type="text" name="username" id="Username" class="Input-Field" placeholder="Enter your username">
     <input type="password" name="password" id="Password" class="Input-Field" placeholder="Enter your password">
     <select name="role" id="role" class="Input-Field">
-        <option value="">Admin</option>
-        <option value="">DOAA</option>
-        <option value="">Faculty</option>
-        <option value="">Student</option>
+        <option value="admin">Admin</option>
+        <option value="doaa">DOAA</option>
+        <option value="faculty">Faculty</option>
+        <option value="student">Student</option>
     </select>
     {% csrf_token %}
     <input type="submit" value="Log In">
