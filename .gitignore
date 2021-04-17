@@ -1,6 +1,8 @@
 environment
+media/*
 .DS_Store
 db.sqlite3
 */migrations/*
 *.pyc
 __pycache__/*
+*/__pycache__/*

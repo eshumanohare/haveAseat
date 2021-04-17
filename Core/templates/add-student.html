@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/create-student-style.css' %}">
+    <title>haveASeat | Create a Student</title>
+</head>
+<body>
+    <form id="Create-Student-Form" method="POST" action="{% url 'Core:createStudent' %}" enctype="multipart/form-data">
+        <p id="Form-Heading">Create a Student</p>
+        <label for="firstName" class="Create-Student-Form-Label">First Name</label>
+        <input type="text" name="firstName" id="" class="Create-Student-Form-Field">
+        <label for="lastName" class="Create-Student-Form-Label">Last Name</label>
+        <input type="text" name="lastName" id="" class="Create-Student-Form-Field">
+        <label for="email" class="Create-Student-Form-Label">Email</label>
+        <input type="email" name="email" id="" class="Create-Student-Form-Field">
+        <label for="username" class="Create-Student-Form-Label">Username</label>
+        <input type="text" name="username" id="" class="Create-Student-Form-Field">
+        <label for="password" class="Create-Student-Form-Label">Password</label>
+        <input type="password" name="password" id="" class="Create-Student-Form-Field">
+        <label for="rollNumber" class="Create-Student-Form-Label">Roll Number</label>
+        <input type="text" name="rollNumber" id="" class="Create-Student-Form-Field">
+        <label for="graduationYear" class="Create-Student-Form-Label">Graduation Year</label>
+        <input type="text" name="graduationYear" id="" class="Create-Student-Form-Field">
+        <label for="batch" class="Create-Student-Form-Label">Batch</label>
+        <input type="text" name="batch" id="" class="Create-Student-Form-Field">
+        <label for="program" class="Create-Student-Form-Label">Program</label>
+        <select name="program" id="" class="Create-Student-Form-Field">
+            <option value="B-Tech">B. Tech</option>
+            <option value="M-Tech">M. Tech</option>
+            <option value="PhD">PhD</option>
+        </select>
+        <label for="branch" class="Create-Student-Form-Label">Branch</label>
+        <select name="branch" id="" class="Create-Student-Form-Field">
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="CSB">CSB</option>
+            <option value="CSD">CSD</option>
+            <option value="CSAM">CSAM</option>
+            <option value="CSSS">CSSS</option>
+        </select>
+        <label for="profilePicture" class="Create-Student-Form-Label">Profile Picture</label>
+        <input type="file" name="profilePicture" accept="image/png" id="" class="Create-Student-Form-Field">
+        {% csrf_token %}
+        <input id="Create-Student-Form-Submit" type="submit" value="Create">
+    </form>
+</body>
+</html>
