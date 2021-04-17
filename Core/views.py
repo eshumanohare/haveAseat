@@ -1,7 +1,6 @@
 import json
 import datetime
-from . import models
-from django.db import connection, connections
+from django.db import connection
 from django.conf import settings
 from django.shortcuts import render
 from django.core.mail import send_mail
@@ -50,7 +49,7 @@ def createCourses():
         courseList = [courseobj, courseobj1,courseobj2,courseobj3,courseobj4,courseobj5,courseobj6]
 
         return courseList
-        
+
 def createDepartment():
     dep1 = Department(1,"CSE")
     dep1.save()
@@ -61,6 +60,32 @@ def createDepartment():
     dep4 = Department(4,"SSH")
     dep4.save()
 
+    dList = [dep1,dep2,dep3,dep4]
+    return dList
+
+####### calls for creating #####
+depList = createDepartment()
+######## global lists ##########
+courseList = []
+
+def createPreReq():
+    pre1 = PreReq(1,2,1)
+    pre1.save()
+    pre2 = PreReq(2,2,5)
+    pre2.save()
+    pre3 = PreReq(3,3,1)
+    pre3.save()
+    pre4 = PreReq(4,3,4)
+    pre4.save()
+    pre5 = PreReq(5,4,1)
+    pre5.save()
+
+    preList = [pre1,pre2,pre3,pre4,pre5]
+    return preList
+
+######## for preReq ###########
+preReqList = createPreReq()
+
 # insert course from admin panel
 def insertCourseAdmin(request):
     if request.user.is_authenticated:
@@ -70,23 +95,17 @@ def insertCourseAdmin(request):
         if request.method == "POST" and role.role=='admin':
             department = Department.objects.get(departmentName = request.POST.get('department'))
             newCourse = Course(id = request.POST.get('id'), section = request.POST.get('section'), courseName = request.POST.get('courseName'), credits = request.POST.get('credits'), studentCap = request.POST.get('studentCap'), courseDescription = request.POST.get('courseDescription'), program = request.POST.get('program'), department = department, isLive = 0)
+            
+            courseList.append(newCourse)
+
             newCourse.save()
+            
             print("Saved")
         return HttpResponseRedirect("/"+role.role+"-panel")
     return HttpResponseRedirect("/")
 
-# delete course from admin panel
-def deleteCourseAdmin(request):
-    if request.user.is_authenticated:
-        username = request.user.username
-        user = User.objects.get(username = username)
-        role = UserRole.objects.get(user=user)
-        if request.method == "POST" and role.role=='admin':
-            course = Course.objects.get(id = request.POST.get('id'))
-            course.delete()
-            print("Deleted")
-        return HttpResponseRedirect("/"+role.role+"-panel")
-    return HttpResponseRedirect("/")
+
+######################################### Updation queries ##############################
 
 # make isLive=1 courses
 # make Course Live from Admin Panel
@@ -98,6 +117,12 @@ def setisLive1(request):
         if request.method == "POST" and role.role=='admin':
             course = Course.objects.get(id = request.POST.get('id'))
             course.isLive=1
+
+            # reflecting the change in courseList
+            # for i in courseList:
+            #     if i.id == course.id:
+            #         courseList[i.id].isLive = 1
+
             course.save()
             print("Course is live.")
         return HttpResponseRedirect("/"+role.role+"-panel")
@@ -119,6 +144,8 @@ def setisLive0(request):
     return HttpResponseRedirect("/")
 
 # delete queries
+
+# delete courses from student panel
 def deleteCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -140,8 +167,29 @@ def deleteCourses(request):
     else:
         return HttpResponseRedirect("/")
 
+# delete course from admin panel
+def deleteCourseAdmin(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            
+            # removing the course from courseList
+            for i in courseList:
+                if i.id == course.id:
+                    courseList.remove(i)
+        
+            course.delete()
+
+            print("Deleted")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
 
 # read queries
+
 def filterCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -175,67 +223,20 @@ def filterCourses(request):
     else:
         return HttpResponseRedirect("/")
 
-####### calls for creating #####
-createDepartment()
 
-######## global lists ##########
-courseList = createCourses()
+########################## queries using api ends ############################
+def getAllCourses(request):
+    context = {
+        'courseList': courseList,
+    }
+    return render(request,'student-panel.html',context)
+
+
 def index(request):
     if not request.user.is_authenticated:
         return HttpResponseRedirect("/login")
 
     return render(request, "index.html", context = {})
-
-def createStudent(request):
-    if request.user.is_authenticated:
-        if request.method == "POST":
-            username = request.POST["username"]
-            firstName = request.POST["firstName"]
-            lastName = request.POST["lastName"]
-            email = request.POST["email"]
-            password = request.POST["password"]
-            rollNumber = request.POST["rollNumber"]
-            graduationYear = request.POST["graduationYear"]
-            batch = request.POST["batch"]
-            program = request.POST["program"]
-            branch = request.POST["branch"]
-            profilePicture = request.FILES["profilePicture"]
-
-            # Creating User model for the new student
-            user = User(
-                username = username,
-                first_name = firstName,
-                last_name = lastName,
-                email = email
-            )
-
-            # Setting the student's password
-            user.set_password(password)
-            user.save()
-
-            # Creater UserRole model for the new student
-            userRole = models.UserRole(
-                user = user,
-                role = "Student"
-            )
-            userRole.save()
-
-            # Creating Student model for the new student
-            student = models.Student(
-                user = user,
-                rollNumber = rollNumber,
-                graduationYear = graduationYear,
-                profilePicture = profilePicture,
-                batch = batch,
-                program = program,
-                branch = models.Branch.objects.get(branchName = branch)
-            )
-            student.save()
-
-            return HttpResponseRedirect("/admin-panel/")
-        else:
-            return render(request, "add-student.html", context = {})
-    return HttpResponseRedirect("/login/")
 
 def loginView(request):
     if request.user.is_authenticated is False:
@@ -317,18 +318,35 @@ def adminPanel(request):
         return HttpResponseRedirect("/")
 
 def studentPanel(request):
+    # for i in courseList:
+    #     print(i.courseName)
+
+    cList = Course.objects.all()
+    courses = []
+    for i in cList:
+        courses.append(i)
+
     if request.user.is_authenticated:
         context = {
-            'courseList': courseList
+            'courseList': courses
         }
-        print(request.user.username)
         return render(request, "student-panel.html", context)
     else:
         return HttpResponseRedirect("/")
 
-def courseDescription(request):
+def courseDescription(request, course_courseName):
     if request.user.is_authenticated:
-        return render(request, "course-description.html", context = {})
+        course = Course.objects.get(courseName = course_courseName)
+        preList = []
+        for i in preReqList:
+            if i.course_id == course.id :
+                preList.append(i.preReqCourse)
+        context = {
+            'course': course,
+            'preReq': preList,
+            'depList': depList
+        }
+        return render(request, "course-description.html", context)
     else:
         return HttpResponseRedirect("/")
 
@@ -339,48 +357,8 @@ def logoutView(request):
 
     return HttpResponseRedirect("/")
 
-def deleteStudent(request, username):
-    if request.user.is_authenticated and request.method == "POST":
-        cursor = connection.cursor()
-        username = username
-        sqlQuery = f"SELECT * FROM Core_Branch AS B, (SELECT AU.username, AU.first_name, AU.last_name, AU.email, S.rollNumber, S.batch, S.program, S.branch_id FROM Auth_User AS AU, Core_Student AS S WHERE AU.username = '{username}') AS S WHERE B.id = S.branch_id;"
-        cursor.execute(sqlQuery)
-        sqlQueryOutput = cursor.fetchone()
-        email = sqlQueryOutput[5]
-        firstName = sqlQueryOutput[3]
-        lastName = sqlQueryOutput[4]
-        rollNumber = sqlQueryOutput[6]
-        batch = sqlQueryOutput[7]
-        program = sqlQueryOutput[8]
-        branch = sqlQueryOutput[1]
-        
-        # User.objects.get(username = username).delete()
-
-        return JsonResponse({
-            "success": True,
-            "username": username,
-            "email": email,
-            "rollNumber": rollNumber,
-            "firstName": firstName,
-            "lastName": lastName,
-            "branch": branch,
-            "program": program,
-            "batch": batch,
-        })
-    else:
-        return JsonResponse({
-            "success": False,
-            "username": None,
-            "firstName": None,
-            "lastName": None,
-            "branch": None,
-            "program": None,
-            "batch": None,
-        })
-
 def fetchFaculties(request):
     if request.user.is_authenticated and request.method == "POST":
-        cursor = connection.cursor()
         data = json.loads(request.body.decode("UTF-8"))
         programs = data["programs"]
         departments = data["departments"]
@@ -398,6 +376,8 @@ def fetchFaculties(request):
 
         if len(whereConstraints) > 0:
             wherePart = f" WHERE {' AND '.join(whereConstraints)}"
+
+        print(wherePart)
 
         if wherePart.strip() != "":
             sqlQuery = f"SELECT AU.username, AU.email, AU.first_name, AU.last_name, F.profileLink FROM Auth_User AS AU, (SELECT F.user_id, F.profileLink FROM Core_Faculty AS F, (SELECT DISTINCT CF.faculty_id FROM Core_CourseFaculty AS CF, (SELECT C.id FROM Core_Course AS C, Core_Department AS D {wherePart}) AS CC WHERE CF.course_id = CC.id) AS CF WHERE CF.faculty_id = F.id) AS F where AU.id = F.user_id;"
@@ -421,62 +401,10 @@ def fetchFaculties(request):
 
 def fetchStudents(request):
     if request.user.is_authenticated and request.method == "POST":
-        cursor = connection.cursor()
         data = json.loads(request.body.decode())
-        branches = data["branches"]
-        years = data["years"]
-        programs = data["programs"]
-        print(programs, years, branches)
-        branchesSQLPart = " OR ".join([f"B.branchName = '{branch}'" for branch in branches])
-        programsSQLPart = " OR ".join([f"A.program = '{program}'" for program in programs])
-        joiningYearsSQLPart = None
-
-        if years[0] == "None" and years[1] == "None":
-            joiningYearsSQLPart = " "
-        elif years[0] == "None":
-            joiningYearsSQLPart = f" A.dateOfJoining <= '{years[1]}-12-31' "
-        elif years[1] == "None":
-            joiningYearsSQLPart = f" A.dateOfJoining >= '{years[0]}-01-01' "
-        else:
-            joiningYearsSQLPart = f" A.dateOfJoining >= '{years[0]}-01-01' AND A.dateOfJoining <= '{years[1]}-12-31' "
-
-        wherePart = ""
-        whereConstraints = []
-
-        if branchesSQLPart.strip() != "":
-            whereConstraints.append("(" + branchesSQLPart + ")")
-
-        if joiningYearsSQLPart.strip() != "":
-            whereConstraints.append("(" + joiningYearsSQLPart + ")")
-
-        if programsSQLPart.strip() != "":
-            whereConstraints.append("(" + programsSQLPart + ")")
-
-        if len(whereConstraints) > 0:
-            wherePart = f" WHERE {' AND '.join(whereConstraints)}"
-
-        if wherePart.strip() != "":
-            sqlQuery = f"SELECT AU.username, AU.email, AU.first_name, AU.last_name, S.rollNumber, S.batch, S.program, S.branchName, S.dateOfJoining, S.graduationYear FROM Auth_User AS AU, (SELECT A.user_id, A.rollNumber, A.dateOfJoining, A.graduationYear, A.batch, A.program, B.branchName FROM Core_Student AS A, Core_Branch AS B {wherePart} AND (A.branch_id = B.id)) AS S where AU.id = S.user_id;"
-        else:
-            sqlQuery = f"SELECT AU.username, AU.email, AU.first_name, AU.last_name, S.rollNumber, S.batch, S.program, S.branchName, S.dateOfJoining, S.graduationYear FROM Auth_User AS AU, (SELECT A.user_id, A.rollNumber, A.dateOfJoining, A.graduationYear, A.batch, A.program, B.branchName FROM Core_Student AS A, Core_Branch AS B WHERE (A.branch_id = B.id)) AS S where AU.id = S.user_id;"
-
-        print(sqlQuery)
-
-        cursor.execute(sqlQuery)
-        sqlQueryOutput = cursor.fetchall()
-        print(sqlQueryOutput)
-
-        return JsonResponse({
-            "success": True,
-            "outputs": studentsToListOfDictionaries(sqlQueryOutput)
-        })
-    return JsonResponse({
-        "success": False,
-    })
 
 def fetchCourses(request):
     if request.user.is_authenticated and request.method == "POST":
-        cursor = connection.cursor()
         data = json.loads(request.body.decode("UTF-8"))
         sections = data["sections"]
         courseCredits = data["credits"]
@@ -547,6 +475,7 @@ def facultiesToListOfDictionaries(outputs):
 
     for output in outputs:
         result = {}
+        [('admin', 'admin@gmail.com', 'Admin', 'Ji', 'https://www.instagram.com/itsmrvaibhav')]
         result["username"] = output[0]
         result["email"] = output[1]
         result["firstName"] = output[2]
@@ -555,25 +484,7 @@ def facultiesToListOfDictionaries(outputs):
         results.append(result)
 
     return results
-
-def studentsToListOfDictionaries(outputs):
-    results = []
-
-    for output in outputs:
-        result = {}
-        result["username"] = output[0]
-        result["email"] = output[1]
-        result["firstName"] = output[2]
-        result["lastName"] = output[3]
-        result["rollNumber"] = output[4]
-        result["batch"] = output[5]
-        result["program"] = output[6]
-        result["branch"] = output[7]
-        result["dateOfJoining"] = output[8]
-        result["graduationYear"] = output[9]
-        results.append(result)
-
-    return results
+    return render(request, "course-description.html", context = {})
 
 def homepage(request):
     return render(request, "homepage.html", context = {})
