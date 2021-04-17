@@ -103,6 +103,20 @@ def insertCourseAdmin(request):
 
 ######################################### Updation queries ##############################
 
+# update studentCap in a Course from admin-panel
+def updateCap(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.studentCap = request.POST.get('studentCap')
+            course.save()
+            print("Course cap is updated.")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
 # make isLive=1 courses
 # make Course Live from Admin Panel
 def setisLive1(request):
@@ -318,21 +332,21 @@ def studentPanel(request):
     else:
         return HttpResponseRedirect("/")
 
-def courseDescription(request, course_courseName):
-    if request.user.is_authenticated:
-        course = Course.objects.get(courseName = course_courseName)
-        preList = []
-        for i in preReqList:
-            if i.course_id == course.id :
-                preList.append(i.preReqCourse)
-        context = {
-            'course': course,
-            'preReq': preList,
-            'depList': depList
-        }
-        return render(request, "course-description.html", context)
-    else:
-        return HttpResponseRedirect("/")
+# def courseDescription(request, course_courseName):
+#     if request.user.is_authenticated:
+#         course = Course.objects.get(courseName = course_courseName)
+#         preList = []
+#         for i in preReqList:
+#             if i.course_id == course.id :
+#                 preList.append(i.preReqCourse)
+#         context = {
+#             'course': course,
+#             'preReq': preList,
+#             'depList': depList
+#         }
+#         return render(request, "course-description.html", context)
+#     else:
+#         return HttpResponseRedirect("/")
 
 def logoutView(request):
     if request.user.is_authenticated:

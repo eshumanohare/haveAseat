@@ -15,7 +15,7 @@ urlpatterns = [
     path("admin-panel/", views.adminPanel, name = "adminPanel"),
     # path("admin-panel/delete-student/<str:username>/", views.deleteStudent, name = "deleteStudent"),
     path("student-panel/", views.studentPanel, name = "studentPanel"),
-    path("course-description/", views.courseDescription, name = "courseDescription"),
+    #path("course-description/", views.courseDescription, name = "courseDescription"),
     path("fetch-courses/", views.fetchCourses, name = "fetchCourses"),
     path("fetch-faculties/", views.fetchFaculties, name = "fetchFaculties"),
     path("fetch-students/", views.fetchStudents, name = "fetchStudents"),
@@ -26,7 +26,8 @@ urlpatterns = [
     path("set-isLive-1-admin/",views.setisLive1,name="setisLive1"),
     path("set-isLive-0-admin/",views.setisLive0,name="setisLive0"),
     path('getAllCourses/',views.getAllCourses,name='getAllCourses'),
-    path("<course_courseName>/",views.courseDescription,name="courseDescription"),
+    #path("<course_courseName>/",views.courseDescription,name="courseDescription"),
+    path("updateCap/",views.updateCap,name="updateCap"),
 ]
 
 urlpatterns += static(

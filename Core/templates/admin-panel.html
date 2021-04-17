@@ -280,14 +280,23 @@
                         {% csrf_token %}
                         <input type="submit" value="Make Live" class="Make-Live-Course-Button">
                     </form>
+                </div>
                 // Make Course Inactive from Admin Panel
                 <div>
                     <form action="{% url 'Core:setisLive0' %}" method="POST" id="setisLive0">
                         <input type="integer" name="id" id="id" class="Input-Field" placeholder="ID">
                         {% csrf_token %}
-                        <input type="submit" value="Make Inactive" class="Make-Inactive-Course-Button">
+                        <input type="submit" value="Remove from Live" class="Make-Inactive-Course-Button">
                     </form>
                 </div>
+                // update studentCap from Admin-panel
+                <div>
+                    <form action="{% url 'Core:updateCap' %}" method="POST" id="updateCap">
+                        <input type="integer" name="id" id="id" class="Input-Field" placeholder="ID">
+                        <input type="integer" name="studentCap" id="id" class="Input-Field" placeholder="Student Cap">
+                        {% csrf_token %}
+                        <input type="submit" value="Update Cap" class="Make-UpdateCap-Course-Button">
+                    </form>
                 </div>
             </div>
         </div>
