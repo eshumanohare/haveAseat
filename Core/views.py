@@ -60,8 +60,64 @@ def createDepartment():
     dep4 = Department(4,"SSH")
     dep4.save()
 
-# delete queries
+# insert course from admin panel
+def insertCourseAdmin(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            department = Department.objects.get(departmentName = request.POST.get('department'))
+            newCourse = Course(id = request.POST.get('id'), section = request.POST.get('section'), courseName = request.POST.get('courseName'), credits = request.POST.get('credits'), studentCap = request.POST.get('studentCap'), courseDescription = request.POST.get('courseDescription'), program = request.POST.get('program'), department = department, isLive = 0)
+            newCourse.save()
+            print("Saved")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
 
+# delete course from admin panel
+def deleteCourseAdmin(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.delete()
+            print("Deleted")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
+# make isLive=1 courses
+# make Course Live from Admin Panel
+def setisLive1(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.isLive=1
+            course.save()
+            print("Course is live.")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
+# make isLive=0 courses
+# make Course Inactive from Admin Panel
+def setisLive0(request):
+    if request.user.is_authenticated:
+        username = request.user.username
+        user = User.objects.get(username = username)
+        role = UserRole.objects.get(user=user)
+        if request.method == "POST" and role.role=='admin':
+            course = Course.objects.get(id = request.POST.get('id'))
+            course.isLive=0
+            course.save()
+            print("Course has been removed from live courses.")
+        return HttpResponseRedirect("/"+role.role+"-panel")
+    return HttpResponseRedirect("/")
+
+# delete queries
 def deleteCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -85,7 +141,6 @@ def deleteCourses(request):
 
 
 # read queries
-
 def filterCourses(request):
     if request.user.is_authenticated:
         if request.method == "POST":
@@ -180,6 +235,11 @@ def createAccount(request):
             )
             user.set_password(password)
             user.save()
+            userRole = UserRole(
+                user = user,
+                role = role
+            )
+            userRole.save()
             print(f" Username -> {username}")
             print(f" Email -> {email}")
             print(f" Password -> {password}")
