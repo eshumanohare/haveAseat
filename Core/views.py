@@ -100,7 +100,6 @@ def insertCourseAdmin(request):
         return HttpResponseRedirect("/"+role.role+"-panel")
     return HttpResponseRedirect("/")
 
-
 ######################################### Updation queries ##############################
 
 # update studentCap in a Course from admin-panel
@@ -316,9 +315,6 @@ def adminPanel(request):
         return HttpResponseRedirect("/")
 
 def studentPanel(request):
-    # for i in courseList:
-    #     print(i.courseName)
-
     cList = Course.objects.all()
     courses = []
     for i in cList:
